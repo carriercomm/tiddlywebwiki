@@ -87,6 +87,17 @@ the content of this wiki</a>.
         else:
             return ''
 
+    def _get_config(self):
+      workspace = "bags/common"
+      base = server_base_url(self.environ)
+      return '''
+        <div id="tiddlywebconfig" style="display:none;">
+          <div class="host">%s</div>
+          <div class="workspace">%s</div>
+        </div>
+        <script type="text/javascript" src="%s/bags/lib/tiddlers/TiddlyWebSaver"></script>
+        '''%(base, workspace, base)
+
     def _put_tiddlers_in_tiddlywiki(self, tiddlers, title='TiddlyWeb Loading'):
         """
         Take the provided tiddlers and inject them into the base_tiddlywiki,
@@ -104,6 +115,9 @@ the content of this wiki</a>.
 
         wiki = self._replace_chunk(wiki, '\n<noscript>\n', '\n</noscript>\n',
                 self._no_script(browsable_url))
+
+        wiki = self._replace_chunk(wiki, '\n<!--SERVERSIDE-START-->\n', '\n<!--SERVERSIDE-END-->\n',
+                self._get_config())
 
         # replace the markup bits
         for tiddler_title in found_markup_tiddlers:

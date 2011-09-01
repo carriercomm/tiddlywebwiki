@@ -19,7 +19,7 @@ store_contents['system'] = [
     'https://github.com/tiddlyweb/tiddlywebwikiclient/raw/master/index.recipe'
 ]
 store_contents['lib'] = [
-    'https://raw.github.com/jdlrobson/tiddlywebwiki/builtinsaving/src/lib/index.recipe'
+    'src/lib/index.recipe'
 ]
 
 store_structure = {

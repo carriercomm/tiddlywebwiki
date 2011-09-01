@@ -18,11 +18,26 @@ store_contents = get_tiddler_locations(store_contents,
 store_contents['system'] = [
     'https://github.com/tiddlyweb/tiddlywebwikiclient/raw/master/index.recipe'
 ]
+store_contents['lib'] = [
+    'https://raw.github.com/jdlrobson/tiddlywebwiki/builtinsaving/src/lib/index.recipe'
+]
 
 store_structure = {
     'bags': {
         'system': {
             'desc': 'TiddlyWebWiki client plugins',
+            'policy': {
+                'read': [],
+                'write': ['R:ADMIN'],
+                'create': ['R:ADMIN'],
+                'delete': ['R:ADMIN'],
+                'manage': ['R:ADMIN'],
+                'accept': ['R:ADMIN'],
+                'owner': 'administrator'
+            }
+        },
+        'lib': {
+            'desc': 'TiddlyWebWiki libraries',
             'policy': {
                 'read': [],
                 'write': ['R:ADMIN'],

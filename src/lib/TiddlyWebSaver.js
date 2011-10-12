@@ -1000,7 +1000,7 @@ var tiddlywebsaver = function($, tiddler) {
 	})(jQuery);
 	//}}}
 };
-tiddlywiki.ready(function() {
+jQuery(document).bind("beforeLoadPlugins", function() {
 	var tiddler = new Tiddler("tiddlyweb");
 	merge(tiddler.fields, { "server.host": jQuery("#tiddlywebconfig .host").text(),
 		"server.type": "tiddlyweb", "server.workspace": jQuery("#tiddlywebconfig .workspace").text() });

@@ -892,8 +892,8 @@ var tiddlywebsaver = function($, tiddler) {
 	}
 
 	var adaptor = tiddler.getAdaptor();
-	var recipe = tiddler.fields["server.recipe"];
-	var workspace = recipe ? "recipes/" + recipe : "bags/common";
+	var workspace = tiddler.fields["server.workspace"];
+	workspace = workspace ? workspace : "bags/common";
 
 	var plugin = config.extensions.tiddlyweb = {
 		host: tiddler.fields["server.host"].replace(/\/$/, ""),

@@ -25,7 +25,7 @@ from tiddlyweb.model.tiddler import Tiddler
 from tiddlyweb.util import binary_tiddler, pseudo_binary
 from tiddlyweb.web.util import (server_base_url, tiddler_url,
         encode_name, html_encode, escape_attribute_value)
-from tiddlyweb.web.util import tiddler_etag
+from tiddlyweb.web.util import tiddler_etag, get_route_value
 from tiddlywebplugins.wikklytextrender import wikitext_to_wikklyhtml
 from tiddlyweb.store import StoreError
 
@@ -88,15 +88,32 @@ the content of this wiki</a>.
             return ''
 
     def _get_config(self):
-      workspace = "bags/common"
-      base = server_base_url(self.environ)
-      return '''
-        <div id="tiddlywebconfig" style="display:none;">
-          <div class="host">%s</div>
-          <div class="workspace">%s</div>
-        </div>
-        <script type="text/javascript" src="%s/bags/lib/tiddlers/TiddlyWebSaver"></script>
-        '''%(base, workspace, base)
+        def get_container(environ):
+            routing_args = environ.get('wsgiorg.routing_args', ([], {}))[1]
+            container_name = False
+            container_type = 'bags'
+            store = environ['tiddlyweb.store']
+            if routing_args:
+                if 'recipe_name' in routing_args:
+                    container_name = get_route_value(self.environ,
+                        'recipe_name')
+                    container_type = 'recipes'
+                elif 'bag_name' in routing_args:
+                    container_name = get_route_value(self.environ, 'bag_name')
+            if container_name:
+                return "%s/%s" % (container_type, container_name)
+            else:
+                return ""
+        workspace = get_container(self.environ)
+        base = server_base_url(self.environ)
+        return '''
+          <div id="tiddlywebconfig" style="display:none;">
+            <div class="host">%s</div>
+            <div class="workspace">%s</div>
+          </div>
+          <script type="text/javascript" 
+            src="%s/bags/lib/tiddlers/TiddlyWebSaver"></script>
+          ''' % (base, workspace, base)
 
     def _put_tiddlers_in_tiddlywiki(self, tiddlers, title='TiddlyWeb Loading'):
         """

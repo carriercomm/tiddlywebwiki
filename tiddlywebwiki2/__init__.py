@@ -15,10 +15,10 @@ def init(config):
     import tiddlywebplugins.twimport
     import tiddlywebplugins.console
     from tiddlyweb.util import merge_config
-    from tiddlywebwiki.config import config as twwconfig
+    from tiddlywebwiki2.config import config as twwconfig
 
     merge_config(config, twwconfig)
-    tiddlywebwiki.manage.init(config)
+    tiddlywebwiki2.manage.init(config)
     tiddlywebplugins.status.init(config)
     tiddlywebplugins.atom.init(config)
     tiddlywebplugins.differ.init(config)

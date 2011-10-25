@@ -1,10 +1,10 @@
 from setuptools import setup, find_packages
 
-from tiddlywebwiki import __version__ as VERSION
+from tiddlywebwiki2 import __version__ as VERSION
 
 
 setup(
-    name = 'tiddlywebwiki',
+    name = 'tiddlywebwiki2',
     version = VERSION,
     description = 'A TiddlyWeb plugin to provide a multi-user TiddlyWiki environment.',
     author = 'FND',

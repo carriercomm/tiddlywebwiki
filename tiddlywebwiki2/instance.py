@@ -9,8 +9,8 @@ from tiddlywebplugins.console.instance import (store_contents,
 
 
 instance_config = {
-    'system_plugins': ['tiddlywebwiki'],
-    'twanager_plugins': ['tiddlywebwiki']
+    'system_plugins': ['tiddlywebwikii'],
+    'twanager_plugins': ['tiddlywebwikii']
 }
 
 store_contents = get_tiddler_locations(store_contents,

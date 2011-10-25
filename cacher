@@ -10,7 +10,7 @@ from tiddlywebplugins.instancer.util import cache_tiddlers
 
 
 def main(args):
-    cache_tiddlers('tiddlywebwiki')
+    cache_tiddlers('tiddlywebwiki2')
     return True
 
 

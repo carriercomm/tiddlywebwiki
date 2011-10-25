@@ -5,7 +5,7 @@ all:
 
 tiddlywiki:
 	mkdir tiddlywebwiki/resources || true
-	wget http://tiddlywiki.com/empty.html -O tiddlywebwiki/resources/empty.html
+	wget http://jonrobson.me.uk/tiddlywebwiki/tiddlywiki.html -O tiddlywebwiki/resources/empty.html
 
 remotes: tiddlywiki
 	./cacher
